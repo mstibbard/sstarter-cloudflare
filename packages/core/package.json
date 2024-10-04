@@ -1,0 +1,16 @@
+{
+	"name": "@sstarter-cloudflare/core",
+	"version": "0.0.0",
+	"scripts": {
+		"test": "sst shell vitest"
+	},
+	"exports": {
+		"./*": ["./src/*/index.ts", "./src/*.ts"]
+	},
+	"dependencies": {
+		"sst": "3.1.61"
+	},
+	"devDependencies": {
+		"vitest": "^2.0.3"
+	}
+}
