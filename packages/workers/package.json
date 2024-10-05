@@ -11,6 +11,6 @@
 		"@sstarter-cloudflare/core": "*",
 		"cloudflare": "^3.1.0",
 		"hono": "4.6.3",
-		"sst": "3.1.61"
+		"sst": "3.1.64"
 	}
 }

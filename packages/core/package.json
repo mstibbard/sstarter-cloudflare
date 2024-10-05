@@ -2,15 +2,21 @@
 	"name": "@sstarter-cloudflare/core",
 	"version": "0.0.0",
 	"scripts": {
+		"db:generate": "sst shell drizzle-kit generate",
+		"db:migrate": "sst shell drizzle-kit migrate",
 		"test": "sst shell vitest"
 	},
 	"exports": {
 		"./*": ["./src/*/index.ts", "./src/*.ts"]
 	},
 	"dependencies": {
-		"sst": "3.1.61"
+		"drizzle-orm": "^0.33.0",
+		"sst": "3.1.64",
+		"ulid-workers": "^2.1.0"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "4.20240925.0",
+		"drizzle-kit": "^0.24.2",
 		"vitest": "^2.0.3"
 	}
 }

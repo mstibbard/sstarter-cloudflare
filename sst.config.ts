@@ -7,6 +7,9 @@ export default $config({
 			name: "sstarter-cloudflare",
 			removal: input?.stage === "production" ? "retain" : "remove",
 			home: "cloudflare",
+			providers: {
+				cloudflare: true,
+			},
 		};
 	},
 	async run() {

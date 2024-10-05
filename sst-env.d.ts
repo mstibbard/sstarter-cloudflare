@@ -5,6 +5,18 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
+    "CloudflareD1ApiToken": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "DB": {
+      "type": "sst.cloudflare.D1"
+    }
+    "DBData": {
+      "accountID": string
+      "id": string
+      "type": "sst.sst.Linkable"
+    }
     "OpenApi": {
       "type": "sst.cloudflare.Worker"
       "url": string

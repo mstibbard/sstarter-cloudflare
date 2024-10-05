@@ -6,12 +6,22 @@ export {}
 import "sst"
 declare module "sst" {
   export interface Resource {
+    "CloudflareD1ApiToken": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "DBData": {
+      "accountID": string
+      "id": string
+      "type": "sst.sst.Linkable"
+    }
   }
 }
 // cloudflare 
 import * as cloudflare from "@cloudflare/workers-types";
 declare module "sst" {
   export interface Resource {
+    "DB": cloudflare.D1Database
     "OpenApi": cloudflare.Service
   }
 }

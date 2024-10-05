@@ -3,11 +3,25 @@
 /* eslint-disable */
 import "sst"
 export {}
+import "sst"
 declare module "sst" {
   export interface Resource {
-    "OpenApi": {
-      "type": "sst.cloudflare.Worker"
-      "url": string
+    "CloudflareD1ApiToken": {
+      "type": "sst.sst.Secret"
+      "value": string
     }
+    "DBData": {
+      "accountID": string
+      "id": string
+      "type": "sst.sst.Linkable"
+    }
+  }
+}
+// cloudflare 
+import * as cloudflare from "@cloudflare/workers-types";
+declare module "sst" {
+  export interface Resource {
+    "DB": cloudflare.D1Database
+    "OpenApi": cloudflare.Service
   }
 }
