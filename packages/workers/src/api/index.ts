@@ -1,15 +1,25 @@
-import { User } from "@sstarter-cloudflare/core/user";
-import { Hono } from "hono";
+import { swaggerUI } from "@hono/swagger-ui";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import { errorBody, zodHook } from "./common";
+import { UserApi } from "./user";
 
-const app = new Hono();
+const app = new OpenAPIHono({ defaultHook: zodHook });
 
-app.post("/users", async (c) => {
-	const body = await c.req.json();
-	const result = await User.create(body.email);
-	return c.json(result);
-});
-app.get("/users/:id", async (c) =>
-	c.json(await User.fromID(c.req.param("id"))),
-);
+const routes = app
+	.get("/", swaggerUI({ url: "/doc" }))
+	.route("/user", UserApi.route)
+	.onError((error, c) => {
+		console.error(error);
+		return c.json(errorBody("Internal server error"), 500);
+	});
 
+app.doc("/doc", () => ({
+	openapi: "3.0.0",
+	info: {
+		title: "SSTarter Cloudflare API",
+		version: "0.0.1",
+	},
+}));
+
+export type Routes = typeof routes;
 export default app;
