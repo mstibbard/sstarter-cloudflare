@@ -1,7 +1,7 @@
 CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
-	`time_created` integer DEFAULT (cast(strftime('%s','now') as int)) NOT NULL,
-	`time_updated` integer DEFAULT (cast(strftime('%s','now') as int)) NOT NULL,
+	`time_created` text DEFAULT current_timestamp NOT NULL,
+	`time_updated` text DEFAULT current_timestamp NOT NULL,
 	`email` text NOT NULL
 );
 --> statement-breakpoint

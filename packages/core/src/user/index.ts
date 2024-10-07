@@ -2,6 +2,7 @@ import { extendZodWithOpenApi } from "@hono/zod-openapi";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "../drizzle";
+import { now } from "../drizzle/types";
 import { fn } from "../util/fn";
 import { createID, prefixedUlid } from "../util/id";
 import { userTable } from "./user.sql";
@@ -30,7 +31,7 @@ export namespace User {
 		async (input) => {
 			const result = await db()
 				.update(userTable)
-				.set({ email: input.email, time_updated: Date.now() })
+				.set({ email: input.email, time_updated: now })
 				.where(eq(userTable.id, input.id))
 				.returning()
 				.then((rows) => rows.map(serialize).at(0));
